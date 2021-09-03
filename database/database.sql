@@ -96,8 +96,8 @@ CREATE TABLE tbArticles (
     articleId INT PRIMARY KEY AUTO_INCREMENT,
     articleRoute VARCHAR(50),
     articleTitle VARCHAR(150),
-    articleContent TEXT,
-    articleImage VARCHAR(150),
+    articleContent VARCHAR(250),
+    articleImage VARCHAR(250),
     articleDescription TEXT,
     articleDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(articleRoute)
