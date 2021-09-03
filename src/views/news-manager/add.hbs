@@ -1,0 +1,43 @@
+<div class="form p-4 mt-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Article</h5>
+                    <form action="/articles-manager/add" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="newsRoute" class="form-label">Route</label>
+                            <div class="input-group">
+                                <span for="articleRouteInput" class="input-group-text" id="newsRouteInputAddon">news/</span>
+                                <input type="text" name="route" id="articleRouteInput" class="form-control" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleTitleInput" class="form-label">Title</label>
+                            <input type="text" name="title" id="articleTitleInput" class="form-control" autofocus required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleFileInput" class="form-label">Content</label>
+                            <input type="file" name="file" class="form-control" id="articleFileInput" accept=".md" required>
+                            <div id="fileHelp" class="form-text">(It has to be an .md file)</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleImageInput" class="form-label">Image</label>
+                            <input type="file" name="image" class="form-control" id="articleImageInput" accept=".png" required>
+                            <div id="imageHelp" class="form-text">(It has to be an .png image, preferably 1920 by 1080 size)</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleContentInput" class="form-label">Description</label>
+                            <textarea class="form-control" id="articleContentInput" name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3p text-center">
+                            <button class="btn btn-success" type="submit">
+                                To Post
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

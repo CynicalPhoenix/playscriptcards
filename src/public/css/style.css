@@ -1,0 +1,32 @@
+:root{
+    --background: #1a1a1a;
+
+    --cardBackground: #212121;
+
+    --white: #EEFFF1;
+    --sky: #89DDFF;
+    --blue: #82AAFF;
+    --violet: #C792EA;
+    --orange: #F78C6C;
+    --comment: #229977;
+    --green: #FFCB6B;
+
+    --js-color: #F0DB4F;
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.root {
+    background: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form {
+    width: 100%;
+}
