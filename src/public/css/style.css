@@ -1,8 +1,6 @@
-:root{
+:root {
     --background: #1a1a1a;
-
     --cardBackground: #212121;
-
     --white: #EEFFF1;
     --sky: #89DDFF;
     --blue: #82AAFF;
@@ -10,9 +8,9 @@
     --orange: #F78C6C;
     --comment: #229977;
     --green: #FFCB6B;
-
     --js-color: #F0DB4F;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -22,6 +20,7 @@ body {
 .root {
     background: var(--background);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -29,4 +28,48 @@ body {
 
 .form {
     width: 100%;
+}
+
+.hover::after,
+.hover::before {
+    content: '-';
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.hover:hover::after,
+.hover:hover::before {
+    opacity: 1;
+}
+
+
+/* --------------------------------- section -------------------------------- */
+
+.section {
+    width: 100%;
+    background: var(--background);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-container {
+    width: 100%;
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+/* --------------------------------- signin --------------------------------- */
+
+.signin {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
