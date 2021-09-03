@@ -54,7 +54,7 @@ router.get('/delete/:id', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
 	const {id} = req.params;
 	const articles = await pool.query('SELECT * FROM tbArticles WHERE articleId = ?', [id]);
-	console.log(articles);
-	res.render('news-manager/edit', { article: articles[0] });
+	const article = articles[0];
+	res.render('news-manager/edit', { article });
 });
 module.exports = router;

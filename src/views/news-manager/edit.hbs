@@ -3,18 +3,18 @@
         <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Add Article</h5>
+                    <h5 class="card-title">Edit Article</h5>
                     <form action="/articles-manager/add" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="newsRoute" class="form-label">Route</label>
                             <div class="input-group">
                                 <span for="articleRouteInput" class="input-group-text" id="newsRouteInputAddon">news/</span>
-                                <input type="text" name="route" id="articleRouteInput" class="form-control" autocomplete="off" required>
+                                <input value="{{article.articleRoute}}" type="text" name="route" id="articleRouteInput" class="form-control" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="articleTitleInput" class="form-label">Title</label>
-                            <input type="text" name="title" id="articleTitleInput" class="form-control" autofocus required>
+                            <input value="{{article.articleTitle}}" type="text" name="title" id="articleTitleInput" class="form-control" autofocus required>
                         </div>
                         <div class="mb-3">
                             <label for="articleFileInput" class="form-label">Content</label>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="articleContentInput" class="form-label">Description</label>
-                            <textarea class="form-control" id="articleContentInput" name="description" rows="3" required></textarea>
+                            <textarea class="form-control" id="articleContentInput" name="description" rows="3" required>{{article.articleDescription}}</textarea>
                         </div>
                         <div class="mb-3p text-center">
                             <button class="btn btn-success" type="submit">
