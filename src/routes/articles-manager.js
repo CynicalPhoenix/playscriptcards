@@ -7,14 +7,16 @@ const pool = require('../database');
 
 const upload = require('./../lib/upload');
 
-router.get('/', async (req, res) => {
+const { isLoggedIn } = require('../lib/auth-manager');
+
+router.get('/', isLoggedIn, async (req, res) => {
 	const articles = await pool.query('SELECT * FROM tbArticles');
 	res.render('articles-manager/list', { articles, layout: 'articles-manager' });
 })
 
 //? ADD ROUTE -----------------------------------------------------------------------------------
 
-router.get('/add', (req, res) => {
+router.get('/add', isLoggedIn, (req, res) => {
 	res.render('articles-manager/add', { layout: 'articles-manager' });
 });
 
@@ -50,7 +52,7 @@ router.post('/add', cpUpload, async (req, res) => {
 
 //! DELETE ROUTE -----------------------------------------------------------------------------------
 
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
 
 	const articles = await pool.query('SELECT * FROM tbArticles WHERE articleId = ?', [id]);
@@ -66,7 +68,7 @@ router.get('/delete/:id', async (req, res) => {
 
 //* EDIT ROUTE -----------------------------------------------------------------------------------
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
 	const articles = await pool.query('SELECT * FROM tbArticles WHERE articleId = ?', [id]);
 	const article = articles[0];
