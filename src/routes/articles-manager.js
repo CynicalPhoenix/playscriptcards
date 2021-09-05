@@ -33,8 +33,19 @@ router.post('/add', cpUpload, async (req, res) => {
 		articleImage: image.filename,
 		articleDescription: description
 	}
-	await pool.query('INSERT INTO tbArticles SET ?', [newArticle]);
-	res.redirect('/articles-manager', { layout: 'articles-manager' });
+	pool.query('INSERT INTO tbArticles SET ?', [newArticle], (err) => {
+		if (err) {
+			if (err.code === 'ER_DUP_ENTRY') {
+				fs.unlinkSync(path.join(__dirname, '../public/uploads', file.filename));
+				fs.unlinkSync(path.join(__dirname, '../public/uploads', image.filename));
+				req.flash('message', 'Article route already exists');
+				res.redirect('/articles-manager/add');
+			}
+		} else {
+		req.flash('success', 'Article added succesfully');
+		res.redirect('/articles-manager');
+		}
+	});
 });
 
 //! DELETE ROUTE -----------------------------------------------------------------------------------
@@ -49,6 +60,7 @@ router.get('/delete/:id', async (req, res) => {
 	fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleImage));
 
 	await pool.query('DELETE FROM tbArticles WHERE articleId = ?', [id]);
+	req.flash('success', 'Article deleted succesfully');
 	res.redirect('/articles-manager');
 });
 
@@ -68,16 +80,25 @@ router.post('/edit/:id', cpUpload,  async (req, res) => {
 
 	const articles = await pool.query('SELECT * FROM tbArticles WHERE articleId = ?', [id]);
 	const article = articles[0];
-
 	
 	// si los inputs de archivo están vacios
 	if (!req.files || Object.keys(req.files).length === 0) {
-		var newArticle = {
+		const newArticle = {
 			articleRoute: route,
 			articleTitle: title,
 			articleDescription: description
 		}
-		console.log('no se puso nada')
+		pool.query('UPDATE tbArticles SET ? WHERE articleId = ?', [newArticle, id], (err) => {
+			if (err) {
+				if (err.code === 'ER_DUP_ENTRY') {
+					req.flash('message', 'Article route already exists');
+					res.redirect('/articles-manager/edit/' + id);
+				}
+			} else {
+				req.flash('success', 'Article changed succesfully');
+				res.redirect('/articles-manager');	
+			}
+		});
 	// si el input file tiene archivos
 	} else if (req.files['file']) {
 		// si el input file e image tienen archivos
@@ -86,40 +107,74 @@ router.post('/edit/:id', cpUpload,  async (req, res) => {
 			fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleContent));
 			const image = req.files['image'][0];
 			const file = req.files['file'][0];
-			var newArticle = {
+			const newArticle = {
 				articleRoute: route,
 				articleTitle: title,
 				articleContent: file.filename,
 				articleImage: image.filename,
 				articleDescription: description
 			}
-			console.log('se puso una imagen y un file')
+			pool.query('UPDATE tbArticles SET ? WHERE articleId = ?', [newArticle, id], (err) => {
+				if (err) {
+					if (err.code === 'ER_DUP_ENTRY') {
+						fs.unlinkSync(path.join(__dirname, '../public/uploads', file.filename));
+						fs.unlinkSync(path.join(__dirname, '../public/uploads', image.filename));
+						req.flash('message', 'Article route already exists');
+						res.redirect('/articles-manager/edit/' + id);
+					}
+				} else {
+					fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleContent));
+					fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleImage));
+					req.flash('success', 'Article changed succesfully');
+					res.redirect('/articles-manager');
+				}
+			});
 		} else {
-			fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleContent));
+			
 			const file = req.files['file'][0];
-			var newArticle = {
+			const newArticle = {
 				articleRoute: route,
 				articleTitle: title,
 				articleContent: file.filename,
 				articleDescription: description
 			}
-			console.log('se puso un file')
+			pool.query('UPDATE tbArticles SET ? WHERE articleId = ?', [newArticle, id], (err) => {
+				if (err) {
+					if (err.code === 'ER_DUP_ENTRY') {
+						fs.unlinkSync(path.join(__dirname, '../public/uploads', file.filename));
+						req.flash('message', 'Article route already exists');
+						res.redirect('/articles-manager/edit/' + id);
+					}
+				} else {
+					fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleContent));
+					req.flash('success', 'Article changed succesfully');
+					res.redirect('/articles-manager');
+				}
+			});
 		}
 	// si el input image tiene archivos
 	} else if ( req.files['image'] ) {
-		fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleImage));
 		const image = req.files['image'][0];
-		var newArticle = {
+		const newArticle = {
 			articleRoute: route,
 			articleTitle: title,
 			articleImage: image.filename,
 			articleDescription: description
 		}
-		console.log('se puso una imagen')
-	}
-
-	await pool.query('UPDATE tbArticles SET ? WHERE articleId = ?', [newArticle, id]);
-	res.redirect('/articles-manager');
+		pool.query('UPDATE tbArticles SET ? WHERE articleId = ?', [newArticle, id], (err) => {
+			if (err) {
+				if (err.code === 'ER_DUP_ENTRY') {
+					fs.unlinkSync(path.join(__dirname, '../public/uploads', image.filename));
+					req.flash('message', 'Article route already exists');
+					res.redirect('/articles-manager/edit/' + id);
+				}
+			} else {
+				fs.unlinkSync(path.join(__dirname, '../public/uploads', article.articleImage));
+				req.flash('success', 'Article changed succesfully');
+				res.redirect('/articles-manager');	
+			}
+		});
+	}	
 });
 
 module.exports = router;
