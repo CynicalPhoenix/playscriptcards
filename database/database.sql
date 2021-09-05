@@ -104,7 +104,7 @@ CREATE TABLE tbArticles (
     UNIQUE(articleRoute)
 ); /* en realidad esto ya está en camino, el lunes le treremos este apartado ya hecho */
 
-CREATE TABLE tbArticleEditor ( /*tabla con los diferentes usuarios que pueden cambiar los articulos */
+CREATE TABLE tbArticlesEditors ( /*tabla con los diferentes usuarios que pueden cambiar los articulos */
     editorId INT PRIMARY KEY,
     editorUsername VARCHAR(30),
     editorPassword VARCHAR(30)
@@ -112,6 +112,7 @@ CREATE TABLE tbArticleEditor ( /*tabla con los diferentes usuarios que pueden ca
 
 DESCRIBE tbArticles;
 DROP TABLE tbArticles;
-DROP TABLE tbArticleEditor;
-
-INSERT INTO tbNewsEditor VALUES ('1', 'root', '1234');
+DROP TABLE tbArticlesEditors;
+DROP TABLE tbNewsEditor;
+INSERT INTO tbArticlesEditors VALUES ('3', 'Julio', 'JulioIsTheBest');
+INSERT INTO tbArticlesEditors VALUES ('2', 'slowman', 'JesusIsTheBest');
