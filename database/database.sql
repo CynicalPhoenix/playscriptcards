@@ -95,7 +95,7 @@ CREATE TABLE tbUserStatistics (
 
 CREATE TABLE tbArticles (
     articleId INT PRIMARY KEY AUTO_INCREMENT,
-    articleRoute VARCHAR(50), /* la ruta html de la noticia donde se publicará */
+    articleRoute VARCHAR(50), /* la ruta http de la noticia donde se publicará */
     articleTitle VARCHAR(150), /* titulo del articulo */
     articleContent VARCHAR(250), /* ruta del contenido articulo */
     articleImage VARCHAR(250), /* ruta de la imagen articulo */
