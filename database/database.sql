@@ -65,11 +65,11 @@ CREATE TABLE tbDecks ( /* tabla de mazos */
     deckId INT PRIMARY KEY,
     deckName VARCHAR(150) NOT NULL,
 
-    deckLanguaje1Id INT NOT NULL, /* Explicación: elas cartas solamente van a poder usar cartas de dos lenguajes distintos, 
+    deckLanguajeId2 INT NOT NULL, /* Explicación: las cartas solamente van a poder usar cartas de dos lenguajes distintos, 
                                   esta primera propiedad y la segunda es opcional */
-    FOREIGN KEY (cardTypeId) REFERENCES tbCardsTypes(cardTypeId),
-    deckLanguaje2Id INT,
-    FOREIGN KEY (cardTypeId) REFERENCES tbCardsTypes(cardTypeId),
+    FOREIGN KEY (deckLanguajeId1) REFERENCES tbCardLanguajes(cardLanguajeId),
+    deckLanguajeId2 INT,
+    FOREIGN KEY (deckLanguajeId2) REFERENCES tbCardLanguajes(cardLanguajeId),
 
     userId INT NOT NULL,
     FOREIGN KEY (userId) REFERENCES tbUsers(userId)
@@ -99,7 +99,7 @@ CREATE TABLE tbArticles (
     articleTitle VARCHAR(150), /* titulo del articulo */
     articleContent VARCHAR(250), /* ruta del contenido articulo */
     articleImage VARCHAR(250), /* ruta de la imagen articulo */
-    articleDescription TEXT, /* ruta del contenido articulo */
+    articleDescription TEXT, /* descripcion del contenido articulo */
     articleDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, /* fecha de publicación del articulo */
     UNIQUE(articleRoute)
 ); /* en realidad esto ya está en camino, el lunes le treremos este apartado ya hecho */
