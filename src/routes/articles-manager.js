@@ -25,7 +25,6 @@ router.post('/add', cpUpload, async (req, res) => {
 	const file = req.files['file'][0];
 	const image = req.files['image'][0];
 
-	// const fileContent = fs.readFileSync(path.join(__dirname, '../public/uploads', file.filename), 'utf8');
 	const { route, title, description } = req.body;
 
 	const newArticle = {
