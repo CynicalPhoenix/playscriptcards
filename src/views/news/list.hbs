@@ -1,34 +1,33 @@
-<div class="container pt-4 mt-5">
-    <div class="row row-cols-1 row-cols-md-1 g-3">
-        {{#each articles}}
-            <div class="col">
-                <a href="/news/{{articleRoute}}" style="text-decoration: none;">
-                    <div class="card text-white bg-transparent border-0 border-bottom" style="height: 250px;">
-                        <div class="row h-100">
-                            <div class="col-md-5 h-100 overflow-hidden">  
-                                <img src="../uploads/{{articleImage}}" alt="" class="h-100">
-                            </div>
-                            <div class="card-body col-md-7">
-                                <h4 class="card-title">
-                                    {{articleTitle}}
-                                </h4>
-                                <p class="fs-6">
-                                    {{dateFormat articleDate}}
-                                </p>
-                                <p>
-                                    {{articleDescription}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        {{else}}
-            <div class="col-md-4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>There are not articles yet.</p>
-                </div>
-            </div>
-        {{/each}}
-    </div>
+<div class="landing-image">
+	<img src="/img/landing/news.jpg" alt="">
+	<div class="gradient"></div>
 </div>
+<ul class="news-list">
+	{{#each articles}}
+		<li>
+			<a href="/news/{{articleRoute}}">
+				<figure>  
+					<img src="../uploads/{{articleImage}}" alt="" class="">
+				</figure>
+				<div>
+					<p class="date">
+						{{dateFormat articleDate}}
+					</p>
+					<h2 class="title">
+						{{articleTitle}}
+					</h2>
+					<p class="description">
+						{{articleDescription}}
+					</p>
+				</div>
+			</a>
+			<div class="separator"></div>
+		</li>
+	{{else}}
+		<div class="col-md-4 mx-auto">
+			<div class="card card-body text-center">
+				<p>There are not articles yet.</p>
+			</div>
+		</div>
+	{{/each}}
+</ul>

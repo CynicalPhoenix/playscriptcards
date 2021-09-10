@@ -1,45 +1,16 @@
-<div class="overflow-hidden article-content-image" style="height: 70vh; width: 100%;" >  
+<div class="landing-image">  
     <img src="../uploads/{{article.articleImage}}" alt="" style="width: 100%;" >
     <div class="gradient"></div>
 </div>
-<div class="container pt-4 mt-5">
-    <div class="card text-white bg-transparent border-0  mx-auto" style="width: 750px;"> 
-        <div class="card-body article-page-content">
-            <p class="">
-                {{dateFormat article.articleDate}}
-            </p>
-            <h1 class="">
-                {{article.articleTitle}}
-            </h1>
-            <div class="markdown">{{{markdown}}}</div>
-        </div>
+<div class="article-block">
+    <div class="content">
+        <p class="date">
+            {{dateFormat article.articleDate}}
+        </p>
+        <h1 class="title">
+            {{article.articleTitle}}
+        </h1>
+        <div class="separator"></div>
+        <div class="markdown">{{{markdown}}}</div>
     </div>
 </div>
-
-<style>
-    .article-content-image {
-        position: relative;
-    }
-    .article-content-image .gradient {
-        z-index: 0;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        /* The old syntax, deprecated, but still needed, prefixed, for Opera and WebKit-based browsers */
-        background: linear-gradient(bottom, rgba(255,255,255,0), var(--background));
-
-        /* The new syntax needed by standard-compliant browsers (IE 10 and Firefox 10 onwards), without prefix */
-        background: linear-gradient(to bottom, rgba(255,255,255,0), var(--background));
-    }
-    .article-page-content h1 {
-        margin-bottom: 100px;
-        text-align: center;
-    }
-    .article-page-content h2 {
-        margin-top: 60px;
-    }
-</style>

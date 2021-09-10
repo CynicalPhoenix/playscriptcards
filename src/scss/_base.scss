@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: local('/fonts/SpaceMono-Regular.ttf') format('ttf');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: italic;
+    font-weight: normal;
+    font-display: swap;
+    src: local('/fonts/SpaceMono-Italic.ttf') format('ttf');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: local('/fonts/SpaceMono-Bold.ttf') format('ttf');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: italic;
+    font-weight: bold;
+    font-display: swap;
+    src: local('/fonts/SpaceMono-BoldItalic.ttf') format('ttf');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$background: #1a1a1a;
+$cardBackground: #212121;
+$white: #EEFFF1;
+$sky: #89DDFF;
+$blue: #82AAFF;
+$violet: #C792EA;
+$orange: #F78C6C;
+$red: #F07178;
+$green: #FFCB6B;
+$comment: #229977;
+
+$font-monospace: 'Space Mono', monospace;
+$font-sans: 'Poppins', sans-serif;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ol, ul {
+    list-style: none;
+}
+mark {
+	&.white {
+		color: $white;
+		background: none;
+	}
+	&.sky {
+		color: $sky;
+		background: none;
+	}
+	&.blue {
+		color: $blue;
+    	background: none;
+	}
+	&.violet {
+		color: $violet;
+    	background: none;
+	}
+	&.orange {
+		color: $orange;
+    	background: none;
+	}
+	&.comment {
+		color: $comment;
+    	background: none;
+	}
+	&.green {
+		color: $green;
+    	background: none;
+	}
+}

@@ -14,7 +14,8 @@ router.get('/', async (req, res) => {
 router.get('/:articleRoute', async (req, res) => {
     const { articleRoute } = req.params;
 	const articles = await pool.query('SELECT * FROM tbArticles WHERE articleRoute = ?', [articleRoute]);
-    if (articles.lenght === 'undefined') {
+    console.log(articles[0]);
+    if (articles[0] == 'undefined') {
         res.redirect('/news');
     } else {
         const article = articles[0];

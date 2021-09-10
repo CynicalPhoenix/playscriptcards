@@ -1,0 +1,11 @@
+.hover::after,
+.hover::before {
+    content: '-';
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.hover:hover::after,
+.hover:hover::before {
+    opacity: 1;
+}

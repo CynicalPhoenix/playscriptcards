@@ -1,0 +1,25 @@
+<div class="" style="height: 30px;">
+    {{#if success }}
+        <div class="alert alert-success" role="alert">
+            {{success}}
+            <button type="button" class="button-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    {{/if}}
+    {{#if message }}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+            <button type="button" class="button-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    {{/if}}
+</div>
+<script>
+    const buttonClose = document.querySelector('.button-close')
+    const alert = document.querySelector('.alert')
+    buttonClose.addEventListener('click', () => {
+        alert.style.display = 'none';
+    });
+</script>

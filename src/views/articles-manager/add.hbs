@@ -1,43 +1,59 @@
-<div class="form p-4 mt-4">
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Add Article</h5>
-                    <form action="/articles-manager/add" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="newsRoute" class="form-label">Route</label>
-                            <div class="input-group">
-                                <span for="articleRouteInput" class="input-group-text" id="newsRouteInputAddon">news/</span>
-                                <input type="text" name="route" id="articleRouteInput" class="form-control" autocomplete="off" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="articleTitleInput" class="form-label">Title</label>
-                            <input type="text" name="title" id="articleTitleInput" class="form-control" autofocus required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="articleFileInput" class="form-label">Content</label>
-                            <input type="file" name="file" class="form-control" id="articleFileInput" accept=".md" required>
-                            <div id="fileHelp" class="form-text">(It has to be an .md file)</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="articleImageInput" class="form-label">Image</label>
-                            <input type="file" name="image" class="form-control" id="articleImageInput" accept=".png, .jpg, .jpeg" required>
-                            <div id="imageHelp" class="form-text">(It has to be an .png image, preferably 1920 by 1080 size)</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="articleContentInput" class="form-label">Description</label>
-                            <textarea class="form-control" id="articleContentInput" name="description" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3p text-center">
-                            <button class="btn btn-success" type="submit">
-                                To Post
-                            </button>
-                        </div>
-                    </form>
-                </div>
+<div class="form add-article">
+    <div class="container">
+        <h1 class="title">Add Article</h1>
+        <form action="/articles-manager/add" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <label for="articleRouteInput">Route</label>
+            <div class="route-input">
+                <span for="articleRouteInput" id="newsRouteInputAddon">news/</span>
+                <input type="text" name="route" id="articleRouteInput" autofocus required>
             </div>
-        </div>
+            
+            <label for="articleTitleInput">Title</label>
+            <input type="text" name="title" id="articleTitleInput" required>
+
+            <label for="articleFileInput">Content</label>
+            <div class="file-input">
+                <label for="articleFileInput">Slect file</label>
+                <span id="file-selected">no file selected</span>
+                <input type="file" name="file" id="articleFileInput" accept=".md" required>
+            </div>
+            <div id="fileHelp" class="form-text">/*It has to be an .md file*/</div>
+
+            <label for="articleImageInput">Image</label>
+            <div class="file-input">
+                <label for="articleImageInput">Slect file</label>
+                <span id="image-selected">no file selected</span>
+                <input type="file" name="image"  id="articleImageInput" accept=".png, .jpg, .jpeg" required>
+            </div>
+            <div id="imageHelp" class="form-text">/*It has to be an .png image, preferably 1920 by 1080 size*/</div>
+
+            <label for="articleContentInput">Description</label>
+            <textarea id="articleContentInput" name="description" rows="3" required></textarea>
+            
+            <div class="button-container">
+                <button class="button" type="submit">
+                    To Post
+                </button>
+            </div>
+        </form>
     </div>
 </div>
+<script>
+    const articleFileInput = document.getElementById('articleFileInput');
+    const fileSelected = document.getElementById('file-selected');
+    articleFileInput.addEventListener('change', () => {
+        let routeName = articleFileInput.value;
+        let fileName = routeName.split('\\');
+        console.log(fileName[fileName.length - 1]);
+        fileSelected.innerHTML = fileName[fileName.length - 1];
+    });
+
+    const articleImageInput = document.getElementById('articleImageInput');
+    const imageSelected = document.getElementById('image-selected');
+    articleImageInput.addEventListener('change', () => {
+        let routeName = articleImageInput.value;
+        let fileName = routeName.split('\\');
+        console.log(fileName[fileName.length - 1]);
+        imageSelected.innerHTML = fileName[fileName.length - 1];
+    });
+</script>
